@@ -46,6 +46,217 @@
 
 存放Go源代码的文件后缀名是`.go`
 
+文件第一行: `package`关键字声明包名 
+
+**如果要编译一个可执行文件,必须要有main包和main函数(入口函数)**
+
+```go
+//  单行注释
+/*
+多行注释
+*/
+```
+
+Go语言函数外的语句必须以关键字开头
+
+函数内部定义的变量必须使用
+
+
+
+## 变量
+
+3种声明方式:
+
+1. `var name1 string`
+2. `var name2 = 沙河娜扎`
+3. 函数内部专属:  `name3 := 沙河王子` 
+
+匿名变量(哑元变量)
+
+当有些数据必须要用变量接收但是又不使用它时,就可以用_来接收
+
+
+
+## 常量
+
+`const PI = 3.1415926`
+
+`const UserNotExit = 10000`
+
+
+
+iota:实现枚举
+
+两个要点:
+
+1. `iota`在const关键字出现时将被重置为0
+2. const中每新增一行常量声明,iota加1
+
+
+
+## 流程控制
+
+```go
+	// age := 19
+	// if age > 18 {
+	// 	fmt.Println("澳门首家线上赌场上线了")
+	// } else {
+	// 	fmt.Println("改写暑假作业了")
+	// }
+
+	// 作用域
+	// age变量此时只在if条件判断语句中生效, 节约内存
+	if age := 19; age > 18 {
+		fmt.Println("澳门首家线上赌场上线了")
+	} else if age < 1 {
+		fmt.Println("改写暑假作业了")
+	} else {
+		fmt.Println("玩吧")
+	}
+	// fmt.Println(age)
+```
+
+ 
+
+## for 循环
+
+```go
+	// 基本格式
+	// for i := 0; i < 10; i++ {
+	// 	fmt.Println(i)
+	// }
+
+	// 变种1  省略初始语句 常用
+	// var i = 5
+	// for ; i < 19; i++ {
+	// 	fmt.Println(i)
+	// }
+
+	// 变种2 少用
+	var i = 5
+	for i < 10 {
+		fmt.Println(i)
+		i++
+	}
+
+	// 无限循环  不要轻易用
+	// for {
+	// 	fmt.Println("123")
+	// }
+
+	// for range循环
+	s := "hello 沙河"
+	for i, v := range s {
+		fmt.Printf("%d %c\n", i, v)
+	}
+
+```
+
+## 99乘法表
+
+```go
+// 打印9*9乘法表 
+for i := 1; 1<10 ; i++{
+    for j := 1; j <= i; j++{
+        fmt.Printf("%d*%d=%d\t", j, i, j*i )
+    } 
+    fmt.Println()
+}
+```
+
+
+
+## 基本数据类型
+
+### 整型
+
+​	无符号整型: `unit8` `unit`16 `unit32`  `unit64`
+
+​	带符号整型: `int8` `int16` `int32` `int64`
+
+​	`uint`和`int`:具体是看系统32位还是64位
+
+​	`uinptr`:表示指针
+
+### 其他进制数
+
+Go语言中没办法直接定义二进制数
+
+```go
+// 八进制数
+var n1 = 0777
+// 十六进制数
+var n2 = 0xfff
+fmt.Println(n1, n2)
+fmt.Printf("%o\n", n1)
+fmt.Printf("%x\n", n2)
+```
+
+
+
+### 浮点数
+
+​	`float64`和`floate32`
+
+​	Go语言中浮点数默认是`float64`
+
+###  复数
+
+`complex128`和`complex64`
+
+### 布尔值
+
+`true`和`flase`
+
+不能和其他的类型做转换
+
+### 字符串
+
+常用方法
+
+字符串不能修改
+
+### byte和rune类型
+
+都属于类型别名
+
+````go
+	// for range循环
+	s := "hello 沙河"
+	for i, v := range s {
+		fmt.Printf("%d %c\n", i, v)
+	}
+
+````
+
+
+
+
+
+### 字符串,字符,字节都是什么?
+
+字符串: 双引号包裹的是字符串
+
+字符: 单引号包裹的是字符,单个字母,单个符号,单个文字
+
+字节: 1byte=8bit
+
+go语言中字符串都是utf8编码中一个常用汉字一般占用3个字节
+
+// 2021-1-6 22:01:07  睡觉去,明天再写
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
 
 
 
