@@ -1,3 +1,5 @@
+## 01day笔记
+
 1. 下go  配置环境,  系统和当前环境 改成自己工作目录,, D:\go
 2. 不过1.14后不要求,可以参考这篇博客
 3. https://www.liwenzhou.com/posts/Go/install_go_dev/
