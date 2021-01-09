@@ -4,6 +4,7 @@ import "fmt"
 
 // defer
 
+// 压栈的操作 先进后出 后进先出
 // defer 多用于函数结束之前释放资源(文件句柄,数据库连接,socker链接)
 func deferdemo() {
 	fmt.Println("start")
