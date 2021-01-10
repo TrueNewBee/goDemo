@@ -20,17 +20,41 @@ var (
 	distribution = make(map[string]int, len(users))
 )
 
-func main() {
-	left := dispatchCoin()
-	fmt.Println("剩下：", left)
-
-}
 func dispatchCoin() (left int) {
-	// 还是调用了strings里面的方法切割字符
 	// 1. 依次拿到每个人的名字
-	// 2. 拿到一个人名根据分金币规则去分金币
+	for _, name := range users {
+		// 2. 拿到一个人名根据分金币规则去分金币
+		for _, c := range name { // 神奇的是 range 可以分字符串字符!!!!
+			switch c {
+			case 'e', 'E':
+				// 满足这个条件分1枚金币
+				distribution[name]++
+				coins--
+			case 'i', 'I':
+				// 满足这个条件分1枚金币
+				distribution[name] += 2
+				coins -= 2
+			case 'o', 'O':
+				// 满足这个条件分1枚金币
+				distribution[name] += 3
+				coins -= 3
+			case 'u', 'U':
+				// 满足这个条件分1枚金币
+				distribution[name] += 4
+				coins -= 4
+			}
+		}
+	}
+	left = coins
+
 	// 2.1 每个人分的金币数应该保存到distribution中
 	// 2.2 还要记录下剩余的金币数
 	// 3. 整个第二步执行完就能得到最终每个人分的金币数和剩余金币数
 	return
+}
+
+func main() {
+	left := dispatchCoin()
+	fmt.Println("剩下：", left)
+
 }
