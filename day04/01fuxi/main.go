@@ -36,4 +36,5 @@ func main() {
 	// 闭包示例
 	fc := bi(yuanshuai, "元帅")
 	low(fc)
+	//
 }
