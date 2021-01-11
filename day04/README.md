@@ -62,5 +62,14 @@ func main() {
 
 结构体(struct)   (类似于 类,在go中是类型,而在java中是class类  )
 
+结构体都是值类型
+
+构造函数: 返回一个结构体变量的函数
+
+
+
+
+
 方法
 
+[在Go中恰到好处的内存对齐](https://segmentfault.com/a/1190000017527311?utm_campaign=studygolang.com&utm_medium=studygolang.com&utm_source=studygolang.com)
