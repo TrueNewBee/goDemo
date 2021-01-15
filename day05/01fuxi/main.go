@@ -117,4 +117,18 @@ func main() {
 		fmt.Printf("unmarshal failed, err:%v\n", err)
 	}
 	fmt.Println(po2)
+
+	//map 取值
+
+	m1 := map[int64]string{
+		1: "哈哈哈",
+		2: "汉化",
+		3: "333",
+	}
+	name1 := m1[1]
+	fmt.Println(name1)
+	// 用ok接受参数,用于判断是否有存在
+	name2, ok := m1[200]
+	fmt.Println(name2, ok)
+
 }

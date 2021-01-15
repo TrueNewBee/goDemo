@@ -7,17 +7,17 @@ import "fmt"
 func main() {
 	// 推荐使用
 	// 如何跳出多层循环
-	var flag =false
-	for i := 0, i <10; i++{
-		for j :='A'; j <'Z'; j++{
-			if j == 'C'{
+	var flag = false
+	for i := 0; i < 10; i++ {
+		for j := 'A'; j < 'Z'; j++ {
+			if j == 'C' {
 				flag = true
-				break	//跳出内循环
+				break //跳出内循环
 			}
-			fmt.Println("%v-%c\n", i, j)
+			fmt.Printf("%v-%c\n", i, j)
 		}
-		if flag{
-			break 	// 跳出for循环(外层的for循环)
+		if flag {
+			break // 跳出for循环(外层的for循环)
 		}
 	}
 
