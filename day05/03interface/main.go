@@ -41,4 +41,10 @@ func main() {
 	da(c1)
 	da(d1)
 	da(p1)
+
+	var ss speaker // 定义一个接口类型: speaker的变量:ss, 用来接收该类型变量
+	ss = c1
+	ss = d1
+	ss = p1
+	fmt.Println(ss)
 }
