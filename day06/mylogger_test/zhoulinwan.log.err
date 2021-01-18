@@ -1,0 +1,48 @@
+[2021-01-18 23:17:09] [ERROR] [main:main.go:25]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:17:09] [FATAL] [main:main.go:26]这是一条Fatal日志
+[2021-01-18 23:17:10] [ERROR] [main:main.go:25]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:17:10] [FATAL] [main:main.go:26]这是一条Fatal日志
+[2021-01-18 23:17:11] [ERROR] [main:main.go:25]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:17:11] [FATAL] [main:main.go:26]这是一条Fatal日志
+[2021-01-18 23:17:12] [ERROR] [main:main.go:25]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:17:12] [FATAL] [main:main.go:26]这是一条Fatal日志
+[2021-01-18 23:17:13] [ERROR] [main:main.go:25]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:17:13] [FATAL] [main:main.go:26]这是一条Fatal日志
+[2021-01-18 23:17:14] [ERROR] [main:main.go:25]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:17:14] [FATAL] [main:main.go:26]这是一条Fatal日志
+[2021-01-18 23:17:15] [ERROR] [main:main.go:25]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:17:15] [FATAL] [main:main.go:26]这是一条Fatal日志
+[2021-01-18 23:21:16] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:16] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:17] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:17] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:18] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:18] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:19] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:19] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:20] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:20] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:21] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:21] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:22] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:22] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:23] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:23] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:24] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:24] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:25] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:25] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:26] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:26] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:27] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:27] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:28] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:28] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:29] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:29] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:30] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:30] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:31] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:31] [FATAL] [main:main.go:34]这是一条Fatal日志
+[2021-01-18 23:21:32] [ERROR] [main:main.go:33]这是一条Error日志, id:10010, name:理想
+[2021-01-18 23:21:32] [FATAL] [main:main.go:34]这是一条Fatal日志
