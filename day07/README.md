@@ -127,11 +127,124 @@ time
 
 # 今日内容
 
-并发
+## 并发
 
-goutine
+并发：同一时间段内执行多个任务（你在用微信和两个女朋友聊天）。
 
-channel
+并行：同一时刻执行多个任务（你和你朋友都在用微信和女朋友聊天）。
 
-sync
+Go语言的并发通过`goroutine`实现。`goroutine`类似于线程，属于用户态的线程，我们可以根据需要创建成千上万个`goroutine`并发工作。`goroutine`是由Go语言的运行时（runtime）调度完成，而线程是由操作系统调度完成。
+
+Go语言还提供`channel`在多个`goroutine`间进行通信。`goroutine`和`channel`是 Go 语言秉承的 CSP（Communicating Sequential Process）并发模式的重要实现基础。
+
+## goroutine
+
+Go语言中的`goroutine`就是这样一种机制，`goroutine`的概念类似于线程，但 `goroutine`是由Go的运行时（runtime）调度和管理的。Go程序会智能地将 goroutine 中的任务合理地分配给每个CPU。Go语言之所以被称为现代化的编程语言，就是因为它在语言层面已经内置了调度和上下文切换的机制。
+
+### 启动goroutine
+
+```go
+// goroutine
+
+func hello(i int) {
+	fmt.Println("hello", i)
+}
+
+// 程序启动只有会创建一个主goroutine去执行
+func main() {
+	for i := 0; i < 1000; i++ {
+		go hello(i) // 开启一个单独的goroutine去执行hello函数(任务)
+		// 匿名函数
+		go func(i int) {
+			fmt.Println(i) //	用的是参数的的那个i而不是外面的i
+		}(i)
+	}
+	fmt.Println("main")
+	time.Sleep(time.Second)
+}
+
+```
+
+### `goroutine`什么时候结束?
+
+goroutine 对应的函数结束了,goroutine结束了
+
+`main`函数执行完了,有`main`函数创建的那些`goroutine`都结束了
+
+### math/rand
+
+```go
+// rand随机数
+func f() {
+	rand.Seed(time.Now().UnixNano())	// 保证每次执行的时候有点不一样
+
+	for i := 0; i < 5; i++ {
+		r1 := rand.Int()    // int64
+		r2 := rand.Intn(10) // 0<= x <10
+		fmt.Println(r1, r2)
+	}
+}
+```
+
+[并发](https://www.liwenzhou.com/posts/Go/14_concurrence/)
+
+### `goroutine`调度模型
+
+`GMP`   面试会问
+
+`M:N`	把m个goroutine 分配给n个操作系统线程
+
+goroutine初始栈的大小是2k
+
+
+
+## channel
+
+```go
+var b chan int // 需要指定通道中元素的类型
+```
+
+通道必须使用make函数初始化才能使用
+
+```go
+b = make(chan int)     // 不带缓冲区通道的初始化
+b = make(chan int, 16) // 带缓冲区通道的初始化
+```
+
+### 通道的操作
+
+`<-`
+
+1. 发送: `cha1 <-1`	  发送到ch1
+2. 接收:`x := <- ch1` x接受ch1的数据
+3. 关闭: `close()`
+4. 单向通道  
+
+```go
+// ch1 仅能取值, ch2 仅能存值
+func f2(ch1 <-chan, ch2 chan<- int) {
+	defer wg.Done()
+	for {
+		x, ok := <-ch1
+		if !ok {
+			break
+		}
+		ch2 <- x * x
+	}
+	once.Do(func() { close(ch2) }) // 确保某个操作只执行一次
+}
+```
+
+![image-20210120162719704](D:\Go\src\chentianxiang.vip\studygo\day07\README.assets\image-20210120162719704.png)
+
+
+
+## 作业
+
+1. 为了保证业务代码的执行性能将之前写的日志库改写为异步记录日志方式。
+
+   业务代码记日记先存放到通道中,然后起一个后台goroutine专门从通道中取日志往文件里写
+
+   1. 日志库中channel怎么用?
+   2. 什么时候起后台的goroutine去写日志到文件中
 
