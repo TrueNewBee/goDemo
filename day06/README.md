@@ -256,3 +256,28 @@ func main() {
 
 ### 反射
 
+[反射](https://www.liwenzhou.com/posts/Go/13_reflect/)
+
+自己手写是不可能手写的,这辈子都不可能!  看懂理论,知道这个事就好 
+
+**两个包都有 kind()**   
+
+![image-20210119114155255](D:\Go\src\chentianxiang.vip\studygo\day06\README.assets\image-20210119114155255.png)
+
+### 弊端
+
+![image-20210119132837519](D:\Go\src\chentianxiang.vip\studygo\day06\README.assets\image-20210119132837519.png)
+
+
+
+## 本周分享
+
+要学会`舔人`
+
+只要思想不滑坡,方法总比困难多
+
+## 本周作业
+
+1.把课上写的日志库自己独立完成
+
+2. 附加题: 利用反射 实现ini配置文件解析
