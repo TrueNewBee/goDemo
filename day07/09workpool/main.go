@@ -30,4 +30,16 @@ func main() {
 	for a := 1; a <= 5; a++ {
 		<-results
 	}
+
+	for {
+		x, ok := <-results
+		if !ok { // 什么时候ok=false? results被关闭的时候
+			break
+		}
+		fmt.Println(x)
+	}
+	for x := range results {
+		fmt.Println(x)
+	}
+
 }
