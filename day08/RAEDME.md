@@ -115,9 +115,137 @@ channel是一种类型,一种引用类型.make函数初始化后才可以使用(
 
 # 今日内容
 
-sync包
+## sync包
 
-context
+某个操作想执行一次
 
-网络编程
+`var once sync.Once`
 
+```go
+once.Do(func() {
+       ...
+})
+```
+
+![image-20210122150711981](D:\Go\src\chentianxiang.vip\studygo\day08\RAEDME.assets\image-20210122150711981.png)
+
+### sync.map
+
+像这种场景下就需要为map加锁来保证并发的安全性了，Go语言的`sync`包中提供了一个开箱即用的并发安全版map–`sync.Map`。开箱即用表示不用像内置的map一样使用make函数初始化就能直接使用。同时`sync.Map`内置了诸如`Store`、`Load`、`LoadOrStore`、`Delete`、`Range`等操作方法。
+
+```go
+var m = sync.Map{}
+
+func main() {
+	wg := sync.WaitGroup{}
+	for i := 0; i < 20; i++ {
+		wg.Add(1)
+		go func(n int) {
+			key := strconv.Itoa(n)
+			m.Store(key, n)
+			value, _ := m.Load(key)
+			fmt.Printf("k=:%v,v:=%v\n", key, value)
+			wg.Done()
+		}(i)
+	}
+	wg.Wait()
+}
+```
+
+
+
+## atomic
+
+原子操作  底层还是锁,比直接用互斥锁效率高
+
+## 网络编程
+
+![image-20210122161614532](D:\Go\src\chentianxiang.vip\studygo\day08\RAEDME.assets\image-20210122161614532.png)
+
+## TCP客户端和服务端
+
+**server**
+
+```go
+package main
+
+import (
+	"fmt"
+	"net"
+)
+
+// tcp server 端
+func processConn(conn net.Conn) {
+    defer conn.Close()
+	// 3.与客户端通信
+	var temp [128]byte
+	n, err := conn.Read(temp[:])
+	if err != nil {
+		fmt.Printf("read from conn failed,err:%v\n", err)
+		return
+	}
+	fmt.Println(string(temp[:n]))
+}
+
+func main() {
+	// 1.本地端口启动服务
+	listener, err := net.Listen("tcp", "127.0.0.1:20000")
+	if err != nil {
+		fmt.Printf("start tcp server on  127.0.0.1:20000,err:%v\n", err)
+		return
+	}
+	for {
+		// 2. 等待别人来跟我建立连接
+		conn, err := listener.Accept()
+		if err != nil {
+			fmt.Printf("accept failed,err:%v\n", err)
+			return
+		}
+		go processConn(conn)
+	}
+
+}
+
+```
+
+
+
+**client**
+
+```go
+package main
+
+import (
+	"fmt"
+	"net"
+	"os"
+)
+
+// tcp client
+
+func main() {
+	//1. 与server端建立连接
+	conn, err := net.Dial("tcp", "127.0.0.1:20000")
+    defer conn.Close()
+	if err != nil {
+		fmt.Printf("dial 127.0.0.1:20000 failed,err:%v\n", err)
+		return
+	}
+	// 2. 发送数据
+	var msg string
+	if len(os.Args) < 2 {
+		msg = "hello wang ye "
+	} else {
+		msg = os.Args[1]
+	}
+	conn.Write([]byte(msg))
+	conn.Close()
+}
+
+```
+
+## TCP黏包
+
+### 大端和小端
+
+![image-20210122185617268](D:\Go\src\chentianxiang.vip\studygo\day08\RAEDME.assets\image-20210122185617268.png)
