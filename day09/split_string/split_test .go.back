@@ -1,0 +1,29 @@
+package split_string
+
+// 测试 驱动 开发
+
+// 在终端中 go test  -v 即可测试
+import (
+	"reflect"
+	"testing"
+)
+
+func TestSplit(t *testing.T) {
+	ret := Spilt("babcbef", "b")
+	want := []string{"", "a", "c", "ef"}
+	// 切片是索引,故用反射
+	if !reflect.DeepEqual(ret, want) {
+		// 测试用例失败
+		t.Errorf("want :%v but got : %v\n", want, ret)
+	}
+}
+
+func Test2Split(t *testing.T) {
+	ret := Spilt("cbdef", "b")
+	want := []string{"c", "def"}
+	// 切片是索引,故用反射
+	if !reflect.DeepEqual(ret, want) {
+		// 测试用例失败
+		t.Errorf("want :%v but got : %v\n", want, ret)
+	}
+}
