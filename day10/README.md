@@ -278,7 +278,25 @@ GoLang 解决VsCode中提示错误 go: cannot find main module, but found .git/c
 
 ## Redis
 
-KV数据库
+KV数据库 
+
+```bash
+go get -u github.com/go-redis/redis
+```
+
+Redis的用处:
+
+1. cache缓存
+2. 简单示例
+3.  排行榜
+
+书:<Redis实战>
+
+**由于网络等原因,故下载东西有些出路,看代码即可**
+
+**等用到后,再做详细探讨!**
+
+[Redis的使用详情](https://www.liwenzhou.com/posts/Go/go_redis/)
 
 ## NSQ
 

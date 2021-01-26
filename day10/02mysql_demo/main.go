@@ -35,7 +35,65 @@ func initDB() (err error) {
 	// 最大空闲连接数
 	db.SetMaxIdleConns(2)
 	return
+}
 
+// 插入数据
+func insert() {
+	// 1. 写SQl语句
+	sqlStr := `insert into user(name, age) values("涂朝阳",26)`
+	// 2. exec
+	ret, err := db.Exec(sqlStr)
+	if err != nil {
+		fmt.Printf("insert failed,err:%v\n", err)
+		return
+	}
+	// 如果是插入的数据,能够拿到插入数据的id
+	id, err := ret.LastInsertId()
+	if err != nil {
+		fmt.Printf("get id failed,err:%v\n", err)
+		return
+	}
+	fmt.Println("id :", id)
+}
+
+// 查询多条记录
+func queryMore(n int) {
+	// 1. SQL语句
+	sqlStr := `select id, name, age from user where id >?;` //查询id大于?的
+	// 2. 执行
+	rows, err := db.Query(sqlStr, n)
+	if err != nil {
+		fmt.Printf("exec %s,err:%v\n", sqlStr, err)
+		return
+	}
+	// 3, 一定要关闭rows
+	defer rows.Close()
+	// 4. 循环取值
+	for rows.Next() {
+		var u1 user
+		err := rows.Scan(&u1.name, &u1.id, &u1.age)
+		if err != nil {
+			fmt.Printf("scan failed,err:%v\n", err)
+			return
+		}
+		fmt.Printf("u1:%#v\n", u1)
+	}
+}
+
+// 更新操作
+func updateRow(newAge int, id int) {
+	sqlStrl := `update user set age= ? where id= ?`
+	ret, err := db.Exec(sqlStrl, newAge, id)
+	if err != nil {
+		fmt.Printf("updata,err:%v\n", err)
+		return
+	}
+	line, err := ret.RowsAffected()
+	if err != nil {
+		fmt.Printf("get id failed,err:%v\n", err)
+		return
+	}
+	fmt.Printf("更新了%d行数据", line)
 }
 
 // 查询单条记录
@@ -52,6 +110,43 @@ func queryOne(id int) {
 	// rowObj.Scan(&u1.id, &u1.name, &u1.age) // 必须对rowObj对象调用Scan方法,因为该方法会释放数据库连接
 }
 
+// 删除操作
+func deleteRow(id int) {
+	sqlStr := `delete from user where id=?`
+	ret, err := db.Exec(sqlStr, id)
+	if err != nil {
+		fmt.Printf("delete failed,err:%v\n", err)
+		return
+	}
+	n, err := ret.RowsAffected()
+	if err != nil {
+		fmt.Printf("get id failed,err:%v\n", err)
+		return
+	}
+	fmt.Printf("删除了%d行数据\n", n)
+}
+
+// 预处理方式 插入多条数据  (批量插入)
+func prepareInsert() {
+	sqlStr := `insert into user(name, age) values(?,?)`
+	stmt, err := db.Prepare(sqlStr)
+	if err != nil {
+		fmt.Printf("prepare failed,err:%v\n", err)
+		return
+	}
+	defer stmt.Close()
+	// 后续只需拿到stmt去执行一些操作
+	var m = map[string]int{
+		"刘启强": 30,
+		"王祥吉": 31,
+		"田硕":  32,
+		"白慧杰": 55,
+	}
+	for k, v := range m {
+		stmt.Exec(k, v)
+	}
+}
+
 func main() {
 	err := initDB()
 	if err != nil {
@@ -59,5 +154,10 @@ func main() {
 		return
 	}
 	fmt.Println("连接数据库成功")
-	queryOne(1)
+	// queryOne(1)
+	// queryMore(0)
+	// insert()
+	// updateRow(8999, 5)
+	// deleteRow(2)
+	prepareInsert()
 }
