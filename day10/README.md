@@ -300,7 +300,30 @@ Redis的用处:
 
 ## NSQ
 
+[NSQ详细](https://www.liwenzhou.com/posts/Go/go_nsq/)
+
+
+
 Go语言开发的轻量级消息队列
+
+![image-20210127140429242](D:\Go\src\chentianxiang.vip\studygo\day10\README.assets\image-20210127140429242.png)
+
+### 组件
+
+```bash
+nsqdlookeupd.exe
+
+```
+
+默认在本机的127.0.0.1:4160启动
+
+```bash
+nsqd.exe -broadcast -address=127.0.0.1 -lookupd -tcp -address=127.0.0.1:4160
+```
+
+
+
+
 
 ## 包的依赖管理 go module
 
