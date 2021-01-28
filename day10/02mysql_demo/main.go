@@ -3,8 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
-
-	_ "github.com/go-sql-driver/mysql" //init()
+	// _ "github.com/go-sql-driver/mysql" //init()
 )
 
 // Go连接MySQL示例

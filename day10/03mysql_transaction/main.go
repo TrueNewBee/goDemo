@@ -3,8 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
-
-	_ "github.com/go-sql-driver/mysql" //init()
+	// _ "github.com/go-sql-driver/mysql" //init()
 )
 
 var db *sql.DB // 是一个连接池对象  单例 全局的v

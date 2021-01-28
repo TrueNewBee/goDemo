@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/go-redis/redis/v8" // 导入的是新版本
+	"github.com/go-redis/redis/" // 导入的是新版本
 )
 
 // go get github.com/go-redis/redis
