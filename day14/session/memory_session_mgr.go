@@ -3,7 +3,7 @@ package session
 // 2021-02-14 20:19:45
 // 有点乱 老师说明天讲
 import (
-	"fmt"
+	"errors"
 	uuid "github.com/satori/go.uuid"
 	"sync"
 )
@@ -11,14 +11,14 @@ import (
 // 使用uuid   go get github.com/satori/go.uuid
 // 定义一个memory_session_mgr对象
 type MemorySessionMgr struct {
-	SessionMap map[string]Session
+	sessionMap map[string]Session
 	rwlock sync.RWMutex
 }
 
 // 构造函数
 func NewMemorySessionMgr ()*MemorySessionMgr{
 	sr := &MemorySessionMgr{
-		SessionMap: make(map[string]Session, 1024),
+		sessionMap: make(map[string]Session, 1024),
 	}
 	return sr
 }
@@ -29,7 +29,7 @@ func (s *MemorySessionMgr) Init(addr string, options ...string)(err error){
 }
 
 // 创建
-func (s *MemorySessionMgr) CreateSession(session Session , err error){
+func (s *MemorySessionMgr) CreateSession()(session Session , err error){
 	s.rwlock.Lock()
 	defer s.rwlock.Unlock()
 	//使用uuid   go get github.com/satori/go.uuid
@@ -38,7 +38,20 @@ func (s *MemorySessionMgr) CreateSession(session Session , err error){
 	// 转成string
 	sessionId := id.String()
 	// 创建个session
-	fmt.Sprintf(sessionId)
+	session = NewMemorySession(sessionId)
+	// 把单个session 加入到大map中
+	s.sessionMap[sessionId] = session
+	return
+}
+
+func  (s *MemorySessionMgr)Get(sessionId string)(session Session, err error)  {
+	s.rwlock.Lock()
+	defer s.rwlock.Unlock()
+	session, ok := s.sessionMap[sessionId]
+	if !ok{
+		err = errors.New("session not exists")
+		return
+	}
 	return
 }
 

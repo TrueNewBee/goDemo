@@ -4,8 +4,14 @@ import (
 	"errors"
 	"sync"
 )
-
 // 内存管理session
+// MemorySession设计:
+// 定义MemorySession对象(字段: sessionId, 存kv的map,读写锁)
+//  构造函数,为了获取对象
+// Set()
+// Get()
+// Del()
+// Save()
 
 type MemorySession struct {
 	sessionId string
@@ -47,7 +53,7 @@ func (m *MemorySession)Get(key string )( value interface{}, err error)  {
 }
 
 // Delete
-func (m *MemorySession)Delete(key string )( err error)  {
+func (m *MemorySession)Del(key string )( err error)  {
 	// 加锁
 	m.rwlock.Lock()
 	defer m.rwlock.Unlock()
@@ -56,6 +62,6 @@ func (m *MemorySession)Delete(key string )( err error)  {
 }
 
 // Save
-func (m *MemorySession)Save(key string )( err error) {
+func (m *MemorySession)Save()( err error) {
 	return
 }
